@@ -7,23 +7,19 @@ import (
 )
 
 type Temporary interface {
-	Error() string
 	IsTemporary() bool
 }
 
 func main() {
-	fmt.Println("Starting main")
 	err := a()
 	if err != nil {
 		behaviourError, ok := err.(Temporary)
-		if ok {
-			fmt.Printf("Got the following error: %s, with temporary behaviour\n", behaviourError)
+		if ok && behaviourError.IsTemporary() {
+			fmt.Printf("Got the following temporary error: %s\n", behaviourError)
 		} else {
-			fmt.Printf("Got the following error: %s, with unkown behaviour\n", err)
+			fmt.Printf("Got the following unkown error: %s\n", err)
 		}
 	}
-
-	fmt.Println("Finished main")
 }
 
 func a() error {

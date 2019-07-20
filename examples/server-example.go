@@ -91,5 +91,4 @@ func isEven(num int) (bool, error) {
 	}
 
 	return true, nil
-
 }
